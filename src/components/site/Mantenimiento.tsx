@@ -34,35 +34,31 @@ const outcomes = [
 
 export function Mantenimiento() {
   return (
-    <section id="mantenimiento" className="bg-ink py-28 md:py-36">
+    <section id="mantenimiento" className="bg-background py-28 md:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <SectionHeading
-          tone="dark"
           eyebrow="Mantenimiento"
           title="El proyecto no termina con la puesta en marcha."
           description="Un sistema HVAC pierde rendimiento si no se lo sostiene. El mantenimiento es la etapa que protege la inversión realizada en ingeniería e instalación."
         />
 
-        <div className="mt-20 grid gap-px border-t border-l border-ink-foreground/12 md:grid-cols-2">
+        <div className="mt-20 grid gap-px border-t border-l border-border md:grid-cols-2">
           {blocks.map((block, index) => (
             <Reveal
               key={block.title}
               delay={index * 80}
-              className="border-r border-b border-ink-foreground/12 p-10"
+              className="border-r border-b border-border p-10"
             >
               <block.icon className="size-6 text-accent" strokeWidth={1.3} />
-              <h3 className="mt-8 text-lg font-semibold text-ink-foreground">{block.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink-foreground/60">{block.text}</p>
+              <h3 className="mt-8 text-lg font-semibold text-ink">{block.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{block.text}</p>
             </Reveal>
           ))}
         </div>
 
         <Reveal className="mt-14 flex flex-wrap gap-x-10 gap-y-4">
           {outcomes.map((outcome) => (
-            <span
-              key={outcome}
-              className="flex items-center gap-3 text-sm text-ink-foreground/70"
-            >
+            <span key={outcome} className="flex items-center gap-3 text-sm text-muted-foreground">
               <span className="size-1.5 rounded-full bg-accent" />
               {outcome}
             </span>

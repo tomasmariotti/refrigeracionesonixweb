@@ -6,16 +6,23 @@ export function Reveal({
   delay = 0,
   className,
   as: Tag = "div",
+  trigger = "scroll",
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
   as?: "div" | "li" | "section" | "article";
+  trigger?: "scroll" | "mount";
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    if (trigger === "mount") {
+      const frame = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(frame);
+    }
+
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
@@ -31,7 +38,7 @@ export function Reveal({
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [trigger]);
 
   const Component = Tag as "div";
 

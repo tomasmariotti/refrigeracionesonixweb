@@ -55,9 +55,9 @@ export function Metodologia() {
               delay={index * 60}
               className="group relative pb-12 last:pb-0"
             >
-              <span className="absolute top-1.5 -left-8 size-2.5 -translate-x-1/2 rounded-full bg-accent transition-transform duration-500 group-hover:scale-150 md:-left-14" />
+              <span className="absolute top-1.5 -left-8 size-2.5 -translate-x-1/2 rounded-full bg-steel transition-transform duration-500 group-hover:scale-150 md:-left-14" />
               <div className="grid gap-3 md:grid-cols-[7rem_1fr] md:gap-10">
-                <span className="font-display text-sm tracking-widest text-accent">
+                <span className="font-display text-sm tracking-widest text-steel">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>

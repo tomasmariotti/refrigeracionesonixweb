@@ -70,7 +70,9 @@ export function Casos() {
   const [active, setActive] = useState<number | null>(null);
 
   const visible = projects.filter((p) => filter === "Todos" || p.category === filter);
+  const [featured, ...rest] = visible;
   const detail = active !== null ? projects[active] : null;
+  const openCase = (project: (typeof projects)[number]) => setActive(projects.indexOf(project));
 
   return (
     <section id="proyectos" className="bg-background py-28 md:py-36">
@@ -99,8 +101,41 @@ export function Casos() {
           ))}
         </Reveal>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {visible.map((project, index) => (
+        {featured && (
+          <Reveal className="group mt-12 cursor-pointer">
+            <button
+              type="button"
+              onClick={() => openCase(featured)}
+              className="grid w-full gap-8 text-left md:grid-cols-2 md:items-center md:gap-12"
+            >
+              <div className="overflow-hidden bg-ink">
+                <img
+                  src={featured.image}
+                  alt={featured.title}
+                  width={1280}
+                  height={960}
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+                />
+              </div>
+              <div>
+                <p className="eyebrow text-accent">{featured.category}</p>
+                <h3 className="mt-4 text-2xl leading-snug font-bold text-ink md:text-3xl">
+                  {featured.title}
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                  {featured.description}
+                </p>
+                <span className="mt-6 inline-block text-xs font-medium tracking-widest text-ink uppercase">
+                  Ver caso completo
+                </span>
+              </div>
+            </button>
+          </Reveal>
+        )}
+
+        <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {rest.map((project, index) => (
             <Reveal
               as="article"
               key={project.title}
@@ -109,7 +144,7 @@ export function Casos() {
             >
               <button
                 type="button"
-                onClick={() => setActive(projects.indexOf(project))}
+                onClick={() => openCase(project)}
                 className="block w-full text-left"
               >
                 <div className="overflow-hidden bg-ink">

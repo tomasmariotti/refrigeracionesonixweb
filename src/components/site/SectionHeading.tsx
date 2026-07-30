@@ -15,23 +15,11 @@ export function SectionHeading({
   tone?: "light" | "dark";
 }) {
   return (
-    <Reveal
-      className={cn(
-        "max-w-3xl",
-        align === "center" && "mx-auto text-center",
-      )}
-    >
-      <p
-        className={cn(
-          "eyebrow",
-          tone === "dark" ? "text-accent" : "text-accent",
-        )}
-      >
-        {eyebrow}
-      </p>
+    <Reveal className={cn("max-w-3xl", align === "center" && "mx-auto text-center")}>
+      <p className={cn("eyebrow", tone === "dark" ? "text-steel" : "text-accent")}>{eyebrow}</p>
       <h2
         className={cn(
-          "mt-5 text-3xl leading-[1.15] font-semibold md:text-[2.6rem]",
+          "mt-5 text-3xl leading-[1.15] font-bold md:text-[2.6rem]",
           tone === "dark" ? "text-ink-foreground" : "text-ink",
         )}
       >

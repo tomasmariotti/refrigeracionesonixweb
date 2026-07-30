@@ -1,12 +1,13 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "@fontsource-variable/bricolage-grotesque";
 
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Refrigeraciones Onix — corporate engineering design system.
- * Palette: deep navy, cool greys, white, electric blue accent.
+ * Refrigeraciones Onix — enterprise / lujo sobrio design system.
+ * Palette: deep navy ink, real white, steel-blue metallic accent.
  */
 
 @theme inline {
@@ -37,54 +38,56 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ink: var(--ink);
+  --color-ink-elevated: var(--ink-elevated);
   --color-ink-foreground: var(--ink-foreground);
   --color-navy: var(--navy);
   --color-navy-foreground: var(--navy-foreground);
   --color-steel: var(--steel);
+  --color-steel-foreground: var(--steel-foreground);
   --color-surface: var(--surface);
-  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.25rem;
+  --radius: 0.125rem;
 
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.21 0.05 262);
-  --surface: oklch(0.972 0.005 250);
+  --background: oklch(0.991 0.004 271);
+  --foreground: oklch(0.171 0.028 267);
+  --surface: oklch(0.975 0.006 266);
 
-  --ink: oklch(0.19 0.055 262);
-  --ink-foreground: oklch(0.98 0.003 250);
-  --navy: oklch(0.32 0.106 261);
+  --ink: oklch(0.171 0.028 267);
+  --ink-elevated: oklch(0.234 0.045 266);
+  --ink-foreground: oklch(0.975 0.004 271);
+  --navy: oklch(0.34 0.09 261);
   --navy-foreground: oklch(0.99 0.002 250);
-  --steel: oklch(0.55 0.03 255);
+  --steel: oklch(0.726 0.05 257);
+  --steel-foreground: oklch(0.171 0.028 267);
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.21 0.05 262);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.21 0.05 262);
+  --card: oklch(0.991 0.004 271);
+  --card-foreground: oklch(0.171 0.028 267);
+  --popover: oklch(0.991 0.004 271);
+  --popover-foreground: oklch(0.171 0.028 267);
 
-  --primary: oklch(0.28 0.096 261);
-  --primary-foreground: oklch(0.99 0.002 250);
-  --secondary: oklch(0.96 0.008 250);
-  --secondary-foreground: oklch(0.28 0.096 261);
-  --muted: oklch(0.965 0.006 250);
-  --muted-foreground: oklch(0.52 0.028 256);
-  --accent: oklch(0.63 0.185 254);
-  --accent-foreground: oklch(1 0 0);
+  --primary: oklch(0.171 0.028 267);
+  --primary-foreground: oklch(0.975 0.004 271);
+  --secondary: oklch(0.96 0.008 265);
+  --secondary-foreground: oklch(0.171 0.028 267);
+  --muted: oklch(0.965 0.006 265);
+  --muted-foreground: oklch(0.5 0.03 260);
+  --accent: oklch(0.446 0.065 258);
+  --accent-foreground: oklch(0.991 0.004 271);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.99 0.002 250);
-  --border: oklch(0.912 0.011 252);
-  --input: oklch(0.912 0.011 252);
-  --ring: oklch(0.63 0.185 254);
+  --border: oklch(0.9 0.012 265);
+  --input: oklch(0.9 0.012 265);
+  --ring: var(--accent);
 
-  --shadow-elevated: 0 24px 60px -30px color-mix(in oklab, var(--ink) 45%, transparent);
-  --shadow-card: 0 1px 2px color-mix(in oklab, var(--ink) 6%, transparent);
-  --gradient-ink: linear-gradient(
-    135deg,
-    color-mix(in oklab, var(--ink) 96%, black) 0%,
-    var(--navy) 100%
-  );
+  --shadow-elevated:
+    0 0 0 1px color-mix(in oklab, var(--ink) 10%, transparent),
+    0 18px 40px -24px color-mix(in oklab, var(--ink) 45%, transparent);
+  --shadow-card: 0 1px 2px color-mix(in oklab, var(--ink) 8%, transparent);
+  --gradient-ink: linear-gradient(135deg, var(--ink) 0%, var(--ink-elevated) 100%);
 }
 
 @layer base {
@@ -109,7 +112,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -123,14 +126,14 @@
 
 @utility eyebrow {
   font-size: 0.6875rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 @utility reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(28px) scale(0.97);
   transition:
     opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
@@ -138,5 +141,48 @@
   &[data-visible="true"] {
     opacity: 1;
     transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+    transition: opacity 0.3s ease;
+  }
+}
+
+@utility tilt-card {
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
+    translateY(var(--tilt-lift, 0px));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@utility cursor-glow {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+      160px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+      color-mix(in oklab, var(--steel) 35%, transparent),
+      transparent 70%
+    );
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::before,
+  &:focus-visible::before {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      display: none;
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CtaModal } from "./CtaModal";
 import { cn } from "@/lib/utils";
 import onixLogo from "@/assets/onix-logo.png.asset.json";
 
@@ -64,9 +65,13 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <Button asChild variant={solid ? "ink" : "outlineLight"} size="lg">
-            <a href="#contacto">Solicitar asesoramiento</a>
-          </Button>
+          <CtaModal
+            trigger={
+              <Button variant={solid ? "ink" : "outlineLight"} size="lg">
+                Solicitar asesoramiento
+              </Button>
+            }
+          />
         </div>
 
         <button
@@ -96,11 +101,13 @@ export function Navbar() {
               </a>
             ))}
           </div>
-          <Button asChild variant="ink" size="lg" className="mt-6 w-full">
-            <a href="#contacto" onClick={() => setOpen(false)}>
-              Solicitar asesoramiento
-            </a>
-          </Button>
+          <CtaModal
+            trigger={
+              <Button variant="ink" size="lg" className="mt-6 w-full" onClick={() => setOpen(false)}>
+                Solicitar asesoramiento
+              </Button>
+            }
+          />
         </div>
       )}
     </header>

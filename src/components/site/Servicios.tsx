@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+import { useTiltGlow } from "@/hooks/use-tilt-glow";
 
 const services = [
   {
@@ -66,6 +67,29 @@ const services = [
   },
 ];
 
+type Service = (typeof services)[number];
+
+function ServiceCard({ service, delay }: { service: Service; delay: number }) {
+  const tiltRef = useTiltGlow<HTMLDivElement>();
+
+  return (
+    <Reveal delay={delay} className="group">
+      <div
+        ref={tiltRef}
+        className="tilt-card cursor-glow rounded-sm border border-border bg-background p-7"
+      >
+        <service.icon
+          className="size-7 text-navy transition-colors duration-300 group-hover:text-accent"
+          strokeWidth={1.3}
+        />
+        <h3 className="mt-6 text-base font-semibold text-ink">{service.title}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{service.text}</p>
+        <span className="mt-6 block h-px w-10 bg-border transition-all duration-500 group-hover:w-20 group-hover:bg-accent" />
+      </div>
+    </Reveal>
+  );
+}
+
 export function Servicios() {
   return (
     <section id="servicios" className="bg-surface py-28 md:py-36">
@@ -78,15 +102,7 @@ export function Servicios() {
 
         <div className="mt-20 grid gap-x-12 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
-            <Reveal key={service.title} delay={(index % 3) * 90} className="group">
-              <service.icon
-                className="size-7 text-navy transition-colors duration-300 group-hover:text-accent"
-                strokeWidth={1.3}
-              />
-              <h3 className="mt-6 text-base font-semibold text-ink">{service.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{service.text}</p>
-              <span className="mt-6 block h-px w-10 bg-border transition-all duration-500 group-hover:w-20 group-hover:bg-accent" />
-            </Reveal>
+            <ServiceCard key={service.title} service={service} delay={(index % 3) * 90} />
           ))}
         </div>
       </div>
