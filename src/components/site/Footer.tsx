@@ -30,10 +30,10 @@ export function Footer() {
             <img
               src={onixLogo}
               alt="Refrigeraciones Onix"
-              width={220}
-              height={64}
+              width={300}
+              height={88}
               loading="lazy"
-              className="h-16 w-auto brightness-0 invert"
+              className="h-20 w-auto brightness-0 invert"
             />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-ink-foreground/60">
               Ingeniería termomecánica, climatización y ventilación para proyectos comerciales,

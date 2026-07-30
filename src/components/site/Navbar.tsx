@@ -41,10 +41,10 @@ export function Navbar() {
           <img
             src={onixLogo}
             alt="Refrigeraciones Onix"
-            width={220}
-            height={64}
+            width={280}
+            height={80}
             className={cn(
-              "h-14 w-auto transition-all duration-500",
+              "h-16 w-auto transition-all duration-500",
               !solid && "brightness-0 invert",
             )}
           />

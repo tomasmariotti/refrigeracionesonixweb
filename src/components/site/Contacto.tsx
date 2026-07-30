@@ -3,8 +3,8 @@ import { Reveal } from "./Reveal";
 import { ContactForm } from "./ContactForm";
 
 const contactData = [
-  { icon: Mail, label: "Correo", value: "contacto@refrigeracionesonix.com" },
-  { icon: Phone, label: "Teléfono", value: "+54 11 0000 0000" },
+  { icon: Mail, label: "Correo", value: "martin@estudionix.com" },
+  { icon: Phone, label: "Teléfono", value: "+54 11 69246040" },
   { icon: MapPin, label: "Zona de trabajo", value: "Área metropolitana y alrededores" },
 ];
 
