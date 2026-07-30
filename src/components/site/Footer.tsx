@@ -1,4 +1,4 @@
-import onixLogo from "@/assets/onix-logo.png.asset.json";
+import onixLogo from "@/assets/refrigeracionesonix.png";
 
 const columns = [
   {
@@ -28,7 +28,7 @@ export function Footer() {
         <div className="grid gap-14 border-b border-ink-foreground/12 pb-16 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <img
-              src={onixLogo.url}
+              src={onixLogo}
               alt="Refrigeraciones Onix"
               width={220}
               height={64}

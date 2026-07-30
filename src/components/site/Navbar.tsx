@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CtaModal } from "./CtaModal";
 import { cn } from "@/lib/utils";
-import onixLogo from "@/assets/onix-logo.png.asset.json";
+import onixLogo from "@/assets/refrigeracionesonix.png";
 
 const links = [
   { href: "#enfoque", label: "Enfoque" },
@@ -39,7 +39,7 @@ export function Navbar() {
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
         <a href="#inicio" className="flex items-center" aria-label="Refrigeraciones Onix">
           <img
-            src={onixLogo.url}
+            src={onixLogo}
             alt="Refrigeraciones Onix"
             width={220}
             height={64}
