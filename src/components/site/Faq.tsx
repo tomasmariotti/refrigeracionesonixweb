@@ -39,10 +39,7 @@ export function Faq() {
     <section className="bg-background py-28 md:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
-          <SectionHeading
-            eyebrow="Preguntas frecuentes"
-            title="Cómo trabajamos, en detalle."
-          />
+          <SectionHeading eyebrow="Preguntas frecuentes" title="Cómo trabajamos, en detalle." />
 
           <Reveal>
             <Accordion type="single" collapsible className="w-full border-t border-border">

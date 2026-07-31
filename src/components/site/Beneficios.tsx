@@ -44,9 +44,7 @@ function BenefitCard({ benefit, delay }: { benefit: Benefit; delay: number }) {
         ref={tiltRef}
         className="tilt-card cursor-glow h-full border-r border-b border-ink-foreground/12 p-7 transition-colors duration-500 ease-out-expo hover:bg-ink-elevated"
       >
-        <h3 className="text-sm font-semibold tracking-wide text-ink-foreground">
-          {benefit.title}
-        </h3>
+        <h3 className="text-sm font-semibold tracking-wide text-ink-foreground">{benefit.title}</h3>
         <p className="mt-3 text-sm leading-relaxed text-ink-foreground/60">{benefit.text}</p>
       </div>
     </Reveal>
