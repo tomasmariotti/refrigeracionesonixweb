@@ -30,7 +30,7 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out-expo",
         solid
           ? "border-b border-border bg-background/95 backdrop-blur-md"
           : "border-b border-transparent",
@@ -44,7 +44,7 @@ export function Navbar() {
             width={280}
             height={80}
             className={cn(
-              "h-16 w-auto transition-all duration-500",
+              "h-16 w-auto transition-all duration-500 ease-out-expo",
               !solid && "brightness-0 invert",
             )}
           />
@@ -79,7 +79,7 @@ export function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label="Abrir menú"
           className={cn(
-            "lg:hidden",
+            "-mr-2.5 flex items-center justify-center p-2.5 lg:hidden",
             solid ? "text-ink" : "text-ink-foreground",
           )}
         >
@@ -103,7 +103,12 @@ export function Navbar() {
           </div>
           <CtaModal
             trigger={
-              <Button variant="ink" size="lg" className="mt-6 w-full" onClick={() => setOpen(false)}>
+              <Button
+                variant="ink"
+                size="lg"
+                className="mt-6 w-full"
+                onClick={() => setOpen(false)}
+              >
                 Solicitar asesoramiento
               </Button>
             }

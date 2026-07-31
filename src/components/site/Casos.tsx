@@ -3,6 +3,7 @@ import { X } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { cn } from "@/lib/utils";
+import { useTiltGlow } from "@/hooks/use-tilt-glow";
 import industrial from "@/assets/case-industrial.jpg";
 import corporativo from "@/assets/case-corporativo.jpg";
 import comercial from "@/assets/case-comercial.jpg";
@@ -65,6 +66,86 @@ const projects: {
 
 const filters: ("Todos" | Category)[] = ["Todos", "Industrial", "Corporativo", "Comercial"];
 
+type Project = (typeof projects)[number];
+
+function FeaturedProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
+  const tiltRef = useTiltGlow<HTMLButtonElement>();
+
+  return (
+    <Reveal className="group mt-12 cursor-pointer">
+      <button
+        ref={tiltRef}
+        type="button"
+        onClick={onOpen}
+        className="tilt-card cursor-glow grid w-full gap-8 text-left md:grid-cols-2 md:items-center md:gap-12"
+      >
+        <div className="overflow-hidden bg-ink">
+          <img
+            src={project.image}
+            alt={project.title}
+            width={1280}
+            height={960}
+            loading="lazy"
+            className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+          />
+        </div>
+        <div>
+          <p className="eyebrow text-accent">{project.category}</p>
+          <h3 className="mt-4 text-2xl leading-snug font-bold text-ink md:text-3xl">
+            {project.title}
+          </h3>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            {project.description}
+          </p>
+          <span className="mt-6 inline-block text-xs font-medium tracking-widest text-ink uppercase">
+            Ver caso completo
+          </span>
+        </div>
+      </button>
+    </Reveal>
+  );
+}
+
+function ProjectCard({
+  project,
+  delay,
+  onOpen,
+}: {
+  project: Project;
+  delay: number;
+  onOpen: () => void;
+}) {
+  const tiltRef = useTiltGlow<HTMLButtonElement>();
+
+  return (
+    <Reveal as="article" delay={delay} className="group cursor-pointer">
+      <button
+        ref={tiltRef}
+        type="button"
+        onClick={onOpen}
+        className="tilt-card cursor-glow block w-full text-left"
+      >
+        <div className="overflow-hidden bg-ink">
+          <img
+            src={project.image}
+            alt={project.title}
+            width={1280}
+            height={960}
+            loading="lazy"
+            className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+          />
+        </div>
+        <p className="eyebrow mt-6 text-accent">{project.category}</p>
+        <h3 className="mt-3 text-lg leading-snug font-semibold text-ink">{project.title}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+        <span className="mt-5 inline-block text-xs font-medium tracking-widest text-ink uppercase">
+          Ver caso
+        </span>
+      </button>
+    </Reveal>
+  );
+}
+
 export function Casos() {
   const [filter, setFilter] = useState<"Todos" | Category>("Todos");
   const [active, setActive] = useState<number | null>(null);
@@ -90,7 +171,7 @@ export function Casos() {
               type="button"
               onClick={() => setFilter(item)}
               className={cn(
-                "border px-5 py-2 text-xs font-medium tracking-wide transition-colors",
+                "inline-flex min-h-11 items-center justify-center border px-5 py-2 text-xs font-medium tracking-wide transition-colors ease-out-expo",
                 filter === item
                   ? "border-ink bg-ink text-ink-foreground"
                   : "border-border text-muted-foreground hover:border-ink/40 hover:text-ink",
@@ -101,74 +182,16 @@ export function Casos() {
           ))}
         </Reveal>
 
-        {featured && (
-          <Reveal className="group mt-12 cursor-pointer">
-            <button
-              type="button"
-              onClick={() => openCase(featured)}
-              className="grid w-full gap-8 text-left md:grid-cols-2 md:items-center md:gap-12"
-            >
-              <div className="overflow-hidden bg-ink">
-                <img
-                  src={featured.image}
-                  alt={featured.title}
-                  width={1280}
-                  height={960}
-                  loading="lazy"
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
-                />
-              </div>
-              <div>
-                <p className="eyebrow text-accent">{featured.category}</p>
-                <h3 className="mt-4 text-2xl leading-snug font-bold text-ink md:text-3xl">
-                  {featured.title}
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                  {featured.description}
-                </p>
-                <span className="mt-6 inline-block text-xs font-medium tracking-widest text-ink uppercase">
-                  Ver caso completo
-                </span>
-              </div>
-            </button>
-          </Reveal>
-        )}
+        {featured && <FeaturedProjectCard project={featured} onOpen={() => openCase(featured)} />}
 
         <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {rest.map((project, index) => (
-            <Reveal
-              as="article"
+            <ProjectCard
               key={project.title}
+              project={project}
               delay={index * 90}
-              className="group cursor-pointer"
-            >
-              <button
-                type="button"
-                onClick={() => openCase(project)}
-                className="block w-full text-left"
-              >
-                <div className="overflow-hidden bg-ink">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    width={1280}
-                    height={960}
-                    loading="lazy"
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
-                  />
-                </div>
-                <p className="eyebrow mt-6 text-accent">{project.category}</p>
-                <h3 className="mt-3 text-lg leading-snug font-semibold text-ink">
-                  {project.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {project.description}
-                </p>
-                <span className="mt-5 inline-block text-xs font-medium tracking-widest text-ink uppercase">
-                  Ver caso
-                </span>
-              </button>
-            </Reveal>
+              onOpen={() => openCase(project)}
+            />
           ))}
         </div>
       </div>
@@ -185,9 +208,7 @@ export function Casos() {
             <div className="flex items-start justify-between gap-8">
               <div>
                 <p className="eyebrow text-accent">{detail.category}</p>
-                <h3 className="mt-3 text-2xl font-semibold text-ink md:text-3xl">
-                  {detail.title}
-                </h3>
+                <h3 className="mt-3 text-2xl font-semibold text-ink md:text-3xl">{detail.title}</h3>
               </div>
               <button
                 type="button"

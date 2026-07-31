@@ -35,7 +35,7 @@ export function Footer() {
               loading="lazy"
               className="h-20 w-auto brightness-0 invert"
             />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-ink-foreground/60">
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-ink-foreground/75">
               Ingeniería termomecánica, climatización y ventilación para proyectos comerciales,
               industriales y corporativos.
             </p>
@@ -43,7 +43,7 @@ export function Footer() {
 
           {columns.map((column) => (
             <div key={column.title}>
-              <p className="eyebrow text-ink-foreground/50">{column.title}</p>
+              <p className="eyebrow text-ink-foreground/70">{column.title}</p>
               <ul className="mt-6 space-y-3">
                 {column.links.map((link) => (
                   <li key={link.label}>
@@ -60,7 +60,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-3 pt-8 text-xs text-ink-foreground/40 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 pt-8 text-xs text-ink-foreground/65 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Refrigeraciones Onix. Todos los derechos reservados.</p>
           <p>Ingeniería HVAC · Climatización · Ventilación</p>
         </div>

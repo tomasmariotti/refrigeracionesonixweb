@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "./Reveal";
 import { CtaModal } from "./CtaModal";
@@ -11,23 +11,38 @@ const metrics = [
 ];
 
 export function Hero() {
-  const [offset, setOffset] = useState(0);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setOffset(Math.min(window.scrollY, 600) * 0.12);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const offset = Math.min(window.scrollY, 600) * 0.12;
+        if (imgRef.current) {
+          imgRef.current.style.transform = `translate3d(0, ${offset}px, 0) scale(1.08)`;
+        }
+      });
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
     <section id="inicio" className="relative min-h-screen overflow-hidden bg-ink">
       <img
+        ref={imgRef}
         src={heroImage}
         alt="Sala de máquinas y equipos HVAC en la azotea de un edificio corporativo"
         width={1920}
         height={1280}
         className="absolute inset-0 size-full scale-105 object-cover opacity-45"
-        style={{ transform: `translate3d(0, ${offset}px, 0) scale(1.08)` }}
+        style={{ transform: "translate3d(0, 0, 0) scale(1.08)" }}
       />
       <div className="absolute inset-0 bg-ink-gradient opacity-80" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" />

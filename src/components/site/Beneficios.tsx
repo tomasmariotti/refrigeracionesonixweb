@@ -1,5 +1,6 @@
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+import { useTiltGlow } from "@/hooks/use-tilt-glow";
 
 const benefits = [
   {
@@ -32,6 +33,26 @@ const benefits = [
   },
 ];
 
+type Benefit = (typeof benefits)[number];
+
+function BenefitCard({ benefit, delay }: { benefit: Benefit; delay: number }) {
+  const tiltRef = useTiltGlow<HTMLDivElement>();
+
+  return (
+    <Reveal delay={delay}>
+      <div
+        ref={tiltRef}
+        className="tilt-card cursor-glow h-full border-r border-b border-ink-foreground/12 p-7 transition-colors duration-500 ease-out-expo hover:bg-ink-elevated"
+      >
+        <h3 className="text-sm font-semibold tracking-wide text-ink-foreground">
+          {benefit.title}
+        </h3>
+        <p className="mt-3 text-sm leading-relaxed text-ink-foreground/60">{benefit.text}</p>
+      </div>
+    </Reveal>
+  );
+}
+
 export function Beneficios() {
   return (
     <section className="bg-ink py-28 md:py-36">
@@ -46,18 +67,7 @@ export function Beneficios() {
 
           <div className="grid gap-px border-t border-l border-ink-foreground/12 sm:grid-cols-2">
             {benefits.map((benefit, index) => (
-              <Reveal
-                key={benefit.title}
-                delay={index * 60}
-                className="border-r border-b border-ink-foreground/12 p-7 transition-colors duration-500 hover:bg-ink-elevated"
-              >
-                <h3 className="text-sm font-semibold tracking-wide text-ink-foreground">
-                  {benefit.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-foreground/60">
-                  {benefit.text}
-                </p>
-              </Reveal>
+              <BenefitCard key={benefit.title} benefit={benefit} delay={index * 60} />
             ))}
           </div>
         </div>

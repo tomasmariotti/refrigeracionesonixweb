@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+import { useTiltGlow } from "@/hooks/use-tilt-glow";
 
 const stages = [
   {
@@ -48,6 +49,31 @@ const stages = [
   },
 ];
 
+type Stage = (typeof stages)[number];
+
+function StageCard({ stage, index }: { stage: Stage; index: number }) {
+  const tiltRef = useTiltGlow<HTMLDivElement>();
+
+  return (
+    <Reveal as="li" delay={index * 70}>
+      <div
+        ref={tiltRef}
+        className="tilt-card cursor-glow group relative h-full border-r border-b border-border bg-background p-8 transition-colors duration-500 ease-out-expo hover:bg-surface"
+      >
+        <span className="absolute top-0 left-0 h-px w-0 bg-accent transition-all duration-500 ease-out-expo group-hover:w-full" />
+        <div className="flex items-center justify-between">
+          <stage.icon className="size-6 text-accent" strokeWidth={1.4} />
+          <span className="font-display text-xs tracking-widest text-muted-foreground/60">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
+        <h3 className="mt-8 text-lg font-semibold text-ink">{stage.title}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{stage.text}</p>
+      </div>
+    </Reveal>
+  );
+}
+
 export function Enfoque() {
   return (
     <section id="enfoque" className="bg-background py-28 md:py-36">
@@ -60,22 +86,7 @@ export function Enfoque() {
 
         <ol className="mt-20 grid gap-px border-t border-l border-border sm:grid-cols-2 lg:grid-cols-4">
           {stages.map((stage, index) => (
-            <Reveal
-              as="li"
-              key={stage.title}
-              delay={index * 70}
-              className="group relative border-r border-b border-border bg-background p-8 transition-colors duration-500 hover:bg-surface"
-            >
-              <span className="absolute top-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
-              <div className="flex items-center justify-between">
-                <stage.icon className="size-6 text-accent" strokeWidth={1.4} />
-                <span className="font-display text-xs tracking-widest text-muted-foreground/60">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <h3 className="mt-8 text-lg font-semibold text-ink">{stage.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{stage.text}</p>
-            </Reveal>
+            <StageCard key={stage.title} stage={stage} index={index} />
           ))}
           <li className="hidden border-r border-b border-border bg-surface p-8 lg:block">
             <p className="text-sm leading-relaxed text-muted-foreground">

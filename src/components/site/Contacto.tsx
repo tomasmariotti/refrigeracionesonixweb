@@ -28,7 +28,7 @@ export function Contacto() {
                 <div key={item.label} className="flex gap-5">
                   <item.icon className="mt-0.5 size-5 text-steel" strokeWidth={1.4} />
                   <div>
-                    <dt className="eyebrow text-ink-foreground/50">{item.label}</dt>
+                    <dt className="eyebrow text-ink-foreground/70">{item.label}</dt>
                     <dd className="mt-1 text-sm font-medium text-ink-foreground">{item.value}</dd>
                   </div>
                 </div>
