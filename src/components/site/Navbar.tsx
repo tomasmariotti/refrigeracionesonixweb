@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CtaModal } from "./CtaModal";
+import { TopContactBar } from "./TopContactBar";
 import { cn } from "@/lib/utils";
 import onixLogo from "@/assets/refrigeracionesonix.png";
 
@@ -36,6 +37,7 @@ export function Navbar() {
           : "border-b border-transparent",
       )}
     >
+      {!solid && <TopContactBar />}
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
         <a href="#inicio" className="flex items-center" aria-label="Refrigeraciones Onix">
           <img

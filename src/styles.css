@@ -156,6 +156,43 @@
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+@utility whatsapp-float {
+  animation: whatsapp-float 3s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes whatsapp-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@utility whatsapp-pulse {
+  animation: whatsapp-pulse 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes whatsapp-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
 @utility cursor-glow {
   position: relative;
   isolation: isolate;

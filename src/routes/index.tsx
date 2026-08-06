@@ -12,6 +12,7 @@ import { Mantenimiento } from "@/components/site/Mantenimiento";
 import { Faq } from "@/components/site/Faq";
 import { Contacto } from "@/components/site/Contacto";
 import { Footer } from "@/components/site/Footer";
+import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 
 const title = "Refrigeraciones Onix | Ingeniería HVAC y climatización industrial";
 const description =
@@ -51,6 +52,7 @@ function Index() {
         <Contacto />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
