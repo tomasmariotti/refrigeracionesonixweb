@@ -4,11 +4,14 @@ import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { cn } from "@/lib/utils";
 import { useTiltGlow } from "@/hooks/use-tilt-glow";
-import industrial from "@/assets/case-industrial.jpg";
-import corporativo from "@/assets/case-corporativo.jpg";
-import comercial from "@/assets/case-comercial.jpg";
+import araujo from "@/assets/case-araujo.jpg";
+import figueroaAlcorta from "@/assets/case-figueroa-alcorta.jpg";
+import lavaderoMauro from "@/assets/case-lavadero-mauro.jpg";
+import veterinariaPanda from "@/assets/case-veterinaria-panda.jpg";
+import viviendaEco from "@/assets/case-vivienda-eco.jpg";
+import olleros from "@/assets/case-olleros.jpg";
 
-type Category = "Industrial" | "Corporativo" | "Comercial";
+type Category = "Edificios" | "Viviendas" | "Comercios";
 
 const projects: {
   title: string;
@@ -21,50 +24,92 @@ const projects: {
   gallery: string[];
 }[] = [
   {
-    title: "Planta de producción — Ventilación y extracción",
-    category: "Industrial",
-    image: industrial,
+    title: "Edificio Araujo — Ventilación mecánica en altura",
+    category: "Edificios",
+    image: araujo,
     description:
-      "Sistema de ventilación general y extracción localizada para una nave de producción con equipamiento de proceso de alta carga térmica.",
+      "Ventilación mecánica integral para un edificio de 12 pisos, con extracción en palieres y campanas de cocina en cada departamento.",
     problem:
-      "Acumulación de calor y aire viciado en zonas de proceso, con condiciones de trabajo inestables y equipos operando por encima de su temperatura recomendada.",
+      "Edificio en altura sin un sistema de ventilación mecánica coordinado: los palieres carecían de renovación de aire y cada departamento necesitaba extracción independiente para su campana de cocina, con recorridos de conducto que debían atravesar múltiples niveles sin interferir con la estructura.",
     solution:
-      "Relevamiento de cargas por sector, rediseño del recorrido de conductos, incorporación de extracción localizada sobre los focos de calor y balanceo de caudales por zona.",
+      "Diseño e instalación de un sistema de ventilación mecánica para todo el edificio, con extracción centralizada en los palieres y conductos dedicados a las parrillas y campanas de cada uno de los 12 pisos, coordinando los recorridos verticales con la estructura existente.",
     result:
-      "Temperatura estabilizada en las áreas críticas, menor cantidad de paradas por sobrecalentamiento y una distribución de aire verificable con mediciones.",
-    gallery: [industrial, comercial],
+      "Renovación de aire garantizada en las circulaciones comunes y extracción de cocina resuelta en cada unidad, con un sistema único operando de forma coordinada en todo el edificio.",
+    gallery: [araujo],
   },
   {
-    title: "Edificio corporativo — Climatización de oficinas",
-    category: "Corporativo",
-    image: corporativo,
+    title: "Vivienda Figueroa Alcorta — Climatización integral VRV",
+    category: "Viviendas",
+    image: figueroaAlcorta,
     description:
-      "Proyecto integral de climatización y renovación de aire para plantas de oficinas con ocupación variable.",
+      "Climatización integral de una vivienda mediante sistema VRV con equipos de baja silueta y conductos en toda la casa, con difusores de ranura embutidos en cielorraso de yeso.",
     problem:
-      "Zonas con temperaturas desparejas, consumo elevado y un sistema original dimensionado sin considerar la ocupación real ni la orientación del edificio.",
+      "Vivienda unifamiliar sin climatización central, con la exigencia arquitectónica de no dejar equipos ni rejillas a la vista, integrando la distribución de aire al diseño interior definido por el estudio de arquitectura.",
     solution:
-      "Recalculo de cargas por orientación y uso, zonificación del sistema, selección de equipamiento con control de capacidad e integración de la renovación de aire.",
+      "Sistema VRV con unidades de baja silueta distribuidas por sector y una red de conductos que recorre toda la vivienda, resolviendo la salida de aire con difusores de ranura embutidos en cielorraso de yeso para mantener las terminaciones limpias.",
     result:
-      "Confort homogéneo entre plantas, reducción del consumo en horarios de baja ocupación y trazabilidad de la operación del sistema.",
-    gallery: [corporativo, comercial],
+      "Climatización homogénea en toda la vivienda sin equipos visibles, integrada al diseño arquitectónico original.",
+    gallery: [figueroaAlcorta],
   },
   {
-    title: "Centro comercial — Sala técnica y distribución",
-    category: "Comercial",
-    image: comercial,
+    title: "Lavadero Mauro — Extracción de aire caliente",
+    category: "Comercios",
+    image: lavaderoMauro,
     description:
-      "Ingeniería y ejecución de sala de máquinas y distribución hidráulica para un complejo comercial con múltiples locales.",
+      "Extracción motorizada del aire caliente generado por las lavadoras industriales, con aislación de conductos para evitar condensación.",
     problem:
-      "Sala técnica sin espacio de mantenimiento, cañerías sin identificación y dificultad para intervenir sin afectar la operación del complejo.",
+      "El calor y la humedad generados por las lavadoras se acumulaban en el local, con riesgo de condensación en los conductos de extracción y sin un sistema de salida de aire dimensionado para el caudal real del equipamiento.",
     solution:
-      "Reordenamiento completo de la sala, nuevo trazado de cañerías con aislación y señalización, sectorización de válvulas y documentación as-built.",
+      "Instalación de una extracción motorizada dedicada al aire caliente de las lavadoras, con conductos aislados térmicamente para evitar la condensación en todo el recorrido.",
     result:
-      "Intervenciones de mantenimiento sin cortar el servicio general y tiempos de diagnóstico notablemente más cortos.",
-    gallery: [comercial, industrial],
+      "Aire caliente evacuado de forma eficiente, sin condensación en los conductos ni acumulación de calor en el local.",
+    gallery: [lavaderoMauro],
+  },
+  {
+    title: "Veterinaria Panda, Recoleta — Climatización y ventilación",
+    category: "Comercios",
+    image: veterinariaPanda,
+    description:
+      "Climatización y ventilación integral de un local comercial mediante dos sistemas multisplit Samsung y equipos axiales de extracción e inyección.",
+    problem:
+      "Local comercial sin climatización ni ventilación mecánica, con la necesidad de mantener condiciones de confort estables para el público y el personal durante toda la jornada.",
+    solution:
+      "Instalación de dos sistemas multisplit Samsung para la climatización del local, complementados con conductos y equipos axiales independientes de extracción e inyección para garantizar la renovación de aire.",
+    result:
+      "Local climatizado y ventilado de forma continua, con condiciones de confort estables y renovación de aire permanente.",
+    gallery: [veterinariaPanda],
+  },
+  {
+    title: "Vivienda ECO, Recoleta — Climatización integral en madera",
+    category: "Viviendas",
+    image: viviendaEco,
+    description:
+      "Climatización integral de una vivienda de madera mediante sistema VRV, con equipos de baja silueta y conductos integrados a la estructura, resueltos con difusores de ranura embutidos en cielorraso de yeso.",
+    problem:
+      "Vivienda de estructura de madera, donde el recorrido de conductos debía integrarse a un sistema constructivo liviano sin comprometer el aislamiento térmico ni la terminación interior.",
+    solution:
+      "Diseño de un sistema VRV con equipos de baja silueta y una red de conductos coordinada con la estructura de madera y la aislación de la envolvente, resuelta con difusores de ranura embutidos en cielorraso.",
+    result:
+      "Climatización integral de la vivienda sin afectar la aislación ni la terminación de la estructura en madera, con equipos y conductos completamente ocultos.",
+    gallery: [viviendaEco],
+  },
+  {
+    title: "Veterinaria Panda, Olleros 1747 — Reacondicionamiento termomecánico",
+    category: "Comercios",
+    image: olleros,
+    description:
+      "Reacondicionamiento y puesta en funcionamiento de las instalaciones termomecánicas existentes, adaptándolas a las necesidades del local.",
+    problem:
+      "Instalaciones existentes sin optimizar: el equipo rooftop y el multiposición de planta baja no estaban aprovechados y las oficinas de planta alta no contaban con climatización propia.",
+    solution:
+      "Intervención sobre el equipo rooftop y el equipo multiposición de planta baja, con mantenimiento y modificaciones en los conductos para mejorar la distribución de aire, además de la instalación de equipos split independientes en las oficinas de planta alta.",
+    result:
+      "Instalaciones existentes puestas en funcionamiento con mejor distribución de aire, y climatización independiente incorporada en las oficinas de planta alta.",
+    gallery: [olleros],
   },
 ];
 
-const filters: ("Todos" | Category)[] = ["Todos", "Industrial", "Corporativo", "Comercial"];
+const filters: ("Todos" | Category)[] = ["Todos", "Edificios", "Viviendas", "Comercios"];
 
 type Project = (typeof projects)[number];
 
